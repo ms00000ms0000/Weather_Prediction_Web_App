@@ -16,6 +16,14 @@ wind = st.number_input("Wind Speed", value=5.0)
 
 if st.button("Predict"):
     features = np.array([[precipitation, temp_max, temp_min, wind]])
-    prediction = model.predict(features)
 
-    st.success(f"Predicted Value: {prediction[0][0]:.2f}")
+    preds = model.predict(features)
+
+    # step 1: find class index
+    class_idx = int(np.argmax(preds))
+
+    # step 2: decode using encoder
+    label = encoder.inverse_transform([class_idx])[0]
+
+    st.success(f"Predicted Weather: {label}")
+    st.write("Class probabilities:", preds[0])
