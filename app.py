@@ -9,10 +9,10 @@ st.title("🌦 Weather Prediction using Deep Learning")
 
 st.write("Enter values to predict weather conditions")
 
-precipitation = st.number_input("Precipitation", value=0.0)
-temp_max = st.number_input("Maximum Temperature", value=30.0)
-temp_min = st.number_input("Minimum Temperature", value=20.0)
-wind = st.number_input("Wind Speed", value=5.0)
+precipitation = st.number_input("Precipitation", min_value=0.0, max_value=200.0, value=0.0)
+temp_max = st.number_input("Maximum Temperature", min_value=-20.0, max_value=60.0, value=30.0)
+temp_min = st.number_input("Minimum Temperature", min_value=-30.0, max_value=50.0, value=20.0)
+wind = st.number_input("Wind Speed", min_value=0.0, max_value=150.0, value=5.0)
 
 if st.button("Predict"):
     # Prepare input features
