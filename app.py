@@ -23,11 +23,11 @@ if st.button("Predict"):
 
     #  5-class mapping
     label_map = {
-        0: "sun",
-        1: "drizzle",
-        2: "fog",
-        3: "rain",
-        4: "snow"
+        0: "drizzle",
+        1: "fog",
+        2: "rain",
+        3: "snow",
+        4: "sun"
     }
 
     label = label_map.get(class_idx, "Unknown")
