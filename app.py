@@ -15,15 +15,21 @@ temp_min = st.number_input("Minimum Temperature", value=20.0)
 wind = st.number_input("Wind Speed", value=5.0)
 
 if st.button("Predict"):
+    # Prepare input features
     features = np.array([[precipitation, temp_max, temp_min, wind]])
 
-    preds = model.predict(features)
+    prediction = model.predict(features)
+    class_idx = int(np.argmax(prediction))
 
-    # step 1: find class index
-    class_idx = int(np.argmax(preds))
+    #  5-class mapping
+    label_map = {
+        0: "sun",
+        1: "drizzle",
+        2: "fog",
+        3: "rain",
+        4: "snow"
+    }
 
-    # step 2: decode using encoder
-    label = encoder.inverse_transform([class_idx])[0]
+    label = label_map.get(class_idx, "Unknown")
 
     st.success(f"Predicted Weather: {label}")
-    st.write("Class probabilities:", preds[0])
